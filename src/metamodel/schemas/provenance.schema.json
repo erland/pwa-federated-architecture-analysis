@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/provenance.schema.json",
+  "title": "Canonical provenance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "sources", "mappings"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "kind"],
+        "properties": {
+          "id": {
+            "$ref": "common-definitions.schema.json#/$defs/id"
+          },
+          "name": {
+            "$ref": "common-definitions.schema.json#/$defs/nonEmpty"
+          },
+          "kind": {
+            "enum": [
+              "standard",
+              "mdg",
+              "document",
+              "user_input",
+              "model",
+              "website",
+              "other"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
+          "uri": {
+            "type": "string"
+          },
+          "license_note": {
+            "type": "string"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "extensions": {
+            "$ref": "common-definitions.schema.json#/$defs/extensions"
+          }
+        }
+      }
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "source", "relationship"],
+        "properties": {
+          "target": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "id"],
+            "properties": {
+              "kind": {
+                "enum": ["element", "relationship", "property", "viewpoint"]
+              },
+              "id": {
+                "$ref": "common-definitions.schema.json#/$defs/id"
+              }
+            }
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source_id", "reference"],
+            "properties": {
+              "source_id": {
+                "$ref": "common-definitions.schema.json#/$defs/id"
+              },
+              "reference": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "relationship": {
+            "enum": [
+              "derived_from",
+              "specializes",
+              "equivalent_to",
+              "inspired_by",
+              "imported_from"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

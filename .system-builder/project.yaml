@@ -1,0 +1,10 @@
+project_id: federerad-analys-pwa
+mode: CHANGE
+artifact_kind: source_project
+frontend: react-typescript-vite-pwa
+backend: none
+metamodel_target: MMP-1.1
+mmp_specification_kit: 1.2.0
+mmp_package_format_in_supplied_kit: 1.1.0
+official_name: Federated Architecture Analysis
+version: 0.1.2

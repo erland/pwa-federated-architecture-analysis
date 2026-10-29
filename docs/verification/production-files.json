@@ -1,0 +1,47 @@
+{
+  "version": "0.1.2",
+  "files": [
+    {
+      "path": "assets/index-CcARqvhk.css",
+      "sha256": "2db08dcee55b579d52de3777d91ecdf4b8bbda38fdb4ed80137e8fe9b64170d3",
+      "bytes": 5826
+    },
+    {
+      "path": "assets/index-Dwhrt9yd.js",
+      "sha256": "b6b08e36adb1c6518af839bde2d97bc8a28b1a66eebb294d2154787f5bae9abf",
+      "bytes": 1568943
+    },
+    {
+      "path": "icon-192.png",
+      "sha256": "d3da9df465e416f5c6560ce2d5544b274290c2fb28cb26115e576cc62e4ec444",
+      "bytes": 1247
+    },
+    {
+      "path": "icon-512.png",
+      "sha256": "7c0337fd187e8fe148eec39eccf2adfb96e98269b092f7e27b4edf6c3c8874a1",
+      "bytes": 4222
+    },
+    {
+      "path": "icon.svg",
+      "sha256": "e7bd542a3724dde70c72617aba234d3e5d75cc4602ddc85d9d3d26175418a34d",
+      "bytes": 314
+    },
+    {
+      "path": "index.html",
+      "sha256": "d84daf91e7e292607fc54e9ac7f47ac9f72f259034f0096c8da996f2306a860c",
+      "bytes": 660
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "5333711c4a8e35775c0c53bcd83459a8de1c8e1bb20b1a968d0b7407ac5932e6",
+      "bytes": 423
+    },
+    {
+      "path": "sw.js",
+      "sha256": "e1c20e7a796be36905ebd83ed0a31aae5c81b84f16e914eac33e900eb5e2ef24",
+      "bytes": 817
+    }
+  ],
+  "examples_in_runtime": false,
+  "examples_in_precache": false
+}

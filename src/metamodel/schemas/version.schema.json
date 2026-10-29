@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/version.schema.json",
+  "title": "Canonical version metadata v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current", "compatibility", "changes"],
+      "properties": {
+        "current": {
+          "$ref": "common-definitions.schema.json#/$defs/semver"
+        },
+        "previous": {
+          "$ref": "common-definitions.schema.json#/$defs/semver"
+        },
+        "compatibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level"],
+          "properties": {
+            "level": {
+              "enum": ["initial", "backward_compatible", "breaking"]
+            },
+            "compatible_with": {
+              "type": "array",
+              "items": {
+                "$ref": "common-definitions.schema.json#/$defs/semver"
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "summary"],
+            "properties": {
+              "type": {
+                "enum": ["add", "change", "deprecate", "remove", "fix"]
+              },
+              "target": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "breaking": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "release_notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

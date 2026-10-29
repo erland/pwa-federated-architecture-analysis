@@ -1,0 +1,72 @@
+requirements:
+  FR-001:
+  - DEV-001
+  FR-002:
+  - DEV-003
+  FR-003:
+  - DEV-001
+  - DEV-006
+  FR-004:
+  - DEV-002
+  FR-005:
+  - DEV-004
+  FR-006:
+  - DEV-005
+  FR-007:
+  - DEV-002
+  - DEV-004
+  - DEV-005
+  FR-008:
+  - DEV-001
+  - DEV-006
+  FR-009:
+  - DEV-006
+  FR-010:
+  - DEV-004
+  - DEV-005
+  FR-011:
+  - DEV-002
+  - DEV-006
+  FR-012:
+  - CHG-001
+  - CHG-002
+verification:
+  FR-001:
+  - 'e2e/app.spec.ts: offline and local processing'
+  - __tests__/contracts.test.ts
+  FR-002:
+  - __tests__/mmp.test.ts
+  - docs/mmp-compatibility.md
+  FR-003:
+  - __tests__/reuse.test.ts
+  - src/config/packages.ts
+  FR-004:
+  - __tests__/excel.test.ts
+  - 'e2e/app.spec.ts: A'
+  FR-005:
+  - __tests__/archimate.test.ts
+  - 'e2e/app.spec.ts: B'
+  FR-006:
+  - __tests__/identity.test.ts
+  - 'e2e/app.spec.ts: C'
+  FR-007:
+  - '__tests__/identity.test.ts: actual XLSX/XML/MMP acceptance'
+  - 'e2e/app.spec.ts: A/B/C'
+  FR-008:
+  - __tests__/reuse.test.ts
+  - 'e2e/app.spec.ts: A/B dependencies'
+  FR-009:
+  - __tests__/reuse.test.ts
+  - 'e2e/app.spec.ts: fresh-context export/import'
+  FR-010:
+  - __tests__/identity.test.ts
+  - __tests__/reuse.test.ts
+  - 'e2e/app.spec.ts: provenance/history'
+  FR-011:
+  - __tests__/storage.test.ts
+  - 'e2e/app.spec.ts: failed staging'
+  FR-012:
+  - __tests__/startup.test.ts
+  - __tests__/runtime-ui.test.ts
+  - 'e2e/app.spec.ts: runtime excludes examples (PASS, rerun 2026-10-29)'
+  - docs/verification/production-files.json

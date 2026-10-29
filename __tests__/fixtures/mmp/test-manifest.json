@@ -1,0 +1,79 @@
+{
+  "suite_version": "1.0.0",
+  "format_version": "1.0.0",
+  "status": "baseline subset; not a complete MMP Core certification",
+  "cases": [
+    {
+      "id": "valid-baseline",
+      "profile": "mmp-core",
+      "expected": "accept",
+      "description": "Unchanged MMP v1 example package",
+      "package": "conformance/packages/valid-baseline.mmp.zip",
+      "sha256": "9628cec213031aa9b769ad8af325d46f899e4a868c0dd19147d510acb1c140dc"
+    },
+    {
+      "id": "invalid-sha256",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Manifest hash does not match canonical content",
+      "package": "conformance/packages/invalid-sha256.mmp.zip",
+      "sha256": "c5f53851dcbd97ff5497f0ea5abd24293a0d248d7a20e0002f17c61bd44f1c4d"
+    },
+    {
+      "id": "invalid-duplicate-type-id",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Duplicate element type identifier",
+      "package": "conformance/packages/invalid-duplicate-type-id.mmp.zip",
+      "sha256": "ce7365d21553bcd68fe801736b51f58ffc6f12606a163610dd7f99c073ba5eb8"
+    },
+    {
+      "id": "invalid-unknown-parent",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Unknown extends reference",
+      "package": "conformance/packages/invalid-unknown-parent.mmp.zip",
+      "sha256": "514b7a92bbebb247d2dd4a1cd4480b21e6c29fcca2cb415e2f100236d0ef2d47"
+    },
+    {
+      "id": "invalid-inheritance-cycle",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Cyclic element type inheritance",
+      "package": "conformance/packages/invalid-inheritance-cycle.mmp.zip",
+      "sha256": "e1686c19ad76a89dddf1c90db8468535c8b5cf8bd3673107343396401531b1e1"
+    },
+    {
+      "id": "invalid-unknown-endpoint",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Unknown relationship endpoint type",
+      "package": "conformance/packages/invalid-unknown-endpoint.mmp.zip",
+      "sha256": "f3dd3b716e29a070e834dc36956f77a144339160661c5915dc57c71632907bcb"
+    },
+    {
+      "id": "invalid-schema-required",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Missing required schema_version field",
+      "package": "conformance/packages/invalid-schema-required.mmp.zip",
+      "sha256": "0dd5512d8fc78fbacdb88f380f1e714a8a96176cf5ae11ba329d8c123463b58e"
+    },
+    {
+      "id": "invalid-format-version",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Unsupported MMP package format version",
+      "package": "conformance/packages/invalid-format-version.mmp.zip",
+      "sha256": "542ce1686b2713cbbf331034ed963be972b8adad42562ddba2c01348497034a2"
+    },
+    {
+      "id": "invalid-extra-file",
+      "profile": "mmp-core",
+      "expected": "reject",
+      "description": "Undeclared extra ZIP member",
+      "package": "conformance/packages/invalid-extra-file.mmp.zip",
+      "sha256": "cb7a207b5c9e54e866da3ecc1cbddba5184f98f48464eeec1c78fb01d499792f"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/constraints.schema.json",
+  "title": "Canonical constraints v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "constraints"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "severity", "applies_to", "rule"],
+        "properties": {
+          "id": {
+            "$ref": "common-definitions.schema.json#/$defs/id"
+          },
+          "name": {
+            "$ref": "common-definitions.schema.json#/$defs/nonEmpty"
+          },
+          "description": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": ["info", "warning", "error"]
+          },
+          "applies_to": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "types"],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "element",
+                  "relationship",
+                  "property",
+                  "viewpoint",
+                  "model"
+                ]
+              },
+              "types": {
+                "$ref": "common-definitions.schema.json#/$defs/refList"
+              }
+            }
+          },
+          "rule": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["language", "expression"],
+            "properties": {
+              "language": {
+                "enum": ["declarative", "ocl", "expression", "natural_language"]
+              },
+              "expression": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "message": {
+            "type": "string"
+          },
+          "extensions": {
+            "$ref": "common-definitions.schema.json#/$defs/extensions"
+          }
+        }
+      }
+    }
+  }
+}

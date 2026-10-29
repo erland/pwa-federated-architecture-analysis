@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="faa-example">
+ <name xml:lang="sv">Representativ arkitekturmodell</name>
+ <elements>
+  <element identifier="app-1" xsi:type="ApplicationComponent"><name xml:lang="sv">ÄHS</name></element>
+  <element identifier="app-2" xsi:type="ApplicationComponent"><name xml:lang="sv">Lön</name></element>
+  <element identifier="app-4" xsi:type="ApplicationComponent"><name xml:lang="sv">Integration</name></element>
+  <element identifier="svc-1" xsi:type="ApplicationService"><name xml:lang="sv">Ärendetjänst</name></element>
+  <element identifier="process-1" xsi:type="BusinessProcess"><name xml:lang="sv">Hantera ärende</name></element>
+ </elements>
+ <relationships>
+  <relationship identifier="realizes-1" xsi:type="Realization" source="app-1" target="svc-1"/>
+  <relationship identifier="serves-1" xsi:type="Serving" source="svc-1" target="process-1"/>
+ </relationships>
+</model>
