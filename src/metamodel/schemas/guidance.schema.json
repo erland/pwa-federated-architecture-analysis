@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/guidance.schema.json",
+  "title": "Canonical modeling guidance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "guide",
+    "elements",
+    "relationships",
+    "viewpoints",
+    "patterns",
+    "anti_patterns",
+    "faq"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "guide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "introduction": {
+          "type": "string"
+        },
+        "principles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "naming_conventions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/elementGuidance"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationshipGuidance"
+      }
+    },
+    "viewpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/viewpointGuidance"
+      }
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/pattern"
+      }
+    },
+    "anti_patterns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/pattern"
+      }
+    },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["question", "answer"],
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "strList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "naming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "recommendation": {
+          "type": "string"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "good_examples": {
+          "$ref": "#/$defs/strList"
+        },
+        "bad_examples": {
+          "$ref": "#/$defs/strList"
+        }
+      }
+    },
+    "elementGuidance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "purpose"],
+      "properties": {
+        "type": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "use_when": {
+          "$ref": "#/$defs/strList"
+        },
+        "do_not_use_when": {
+          "$ref": "#/$defs/strList"
+        },
+        "naming": {
+          "$ref": "#/$defs/naming"
+        },
+        "examples": {
+          "$ref": "#/$defs/strList"
+        },
+        "common_mistakes": {
+          "$ref": "#/$defs/strList"
+        },
+        "recommended_relationships": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        }
+      }
+    },
+    "relationshipGuidance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "meaning"],
+      "properties": {
+        "type": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "meaning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "use_when": {
+          "$ref": "#/$defs/strList"
+        },
+        "avoid_when": {
+          "$ref": "#/$defs/strList"
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source", "target"],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "explanation": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "common_mistakes": {
+          "$ref": "#/$defs/strList"
+        }
+      }
+    },
+    "viewpointGuidance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["viewpoint"],
+      "properties": {
+        "viewpoint": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "use_when": {
+          "$ref": "#/$defs/strList"
+        },
+        "steps": {
+          "$ref": "#/$defs/strList"
+        },
+        "questions_answered": {
+          "$ref": "#/$defs/strList"
+        }
+      }
+    },
+    "pattern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "description"],
+      "properties": {
+        "id": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "when_to_use": {
+          "$ref": "#/$defs/strList"
+        },
+        "elements": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        },
+        "relationships": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        }
+      }
+    }
+  }
+}

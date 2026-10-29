@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/viewpoints.schema.json",
+  "title": "Canonical viewpoints v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "viewpoints"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "viewpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "allowed_elements", "allowed_relationships"],
+        "properties": {
+          "id": {
+            "$ref": "common-definitions.schema.json#/$defs/id"
+          },
+          "name": {
+            "$ref": "common-definitions.schema.json#/$defs/nonEmpty"
+          },
+          "description": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "stakeholders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "allowed_elements": {
+            "$ref": "common-definitions.schema.json#/$defs/refList"
+          },
+          "allowed_relationships": {
+            "$ref": "common-definitions.schema.json#/$defs/refList"
+          },
+          "required_elements": {
+            "$ref": "common-definitions.schema.json#/$defs/refList"
+          },
+          "extensions": {
+            "$ref": "common-definitions.schema.json#/$defs/extensions"
+          }
+        }
+      }
+    }
+  }
+}

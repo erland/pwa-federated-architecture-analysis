@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/notation.schema.json",
+  "title": "Canonical notation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "styles"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "styles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "applies_to", "shape"],
+        "properties": {
+          "id": {
+            "$ref": "common-definitions.schema.json#/$defs/id"
+          },
+          "applies_to": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "type"],
+            "properties": {
+              "kind": {
+                "enum": ["element", "relationship"]
+              },
+              "type": {
+                "$ref": "common-definitions.schema.json#/$defs/id"
+              }
+            }
+          },
+          "shape": {
+            "enum": [
+              "rectangle",
+              "rounded_rectangle",
+              "ellipse",
+              "hexagon",
+              "actor",
+              "artifact",
+              "line",
+              "custom"
+            ]
+          },
+          "label": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "show_name": {
+                "type": "boolean"
+              },
+              "show_stereotype": {
+                "type": "boolean"
+              },
+              "show_properties": {
+                "$ref": "common-definitions.schema.json#/$defs/refList"
+              }
+            }
+          },
+          "visual_hints": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "extensions": {
+            "$ref": "common-definitions.schema.json#/$defs/extensions"
+          }
+        }
+      }
+    }
+  }
+}

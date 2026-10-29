@@ -1,0 +1,9 @@
+{
+  "name": "faa-browser-verification",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "npm --prefix ../.. ci && npm --prefix ../.. run build && PLAYWRIGHT_DOWNLOAD_HOST=https://cdn.playwright.dev PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT=20000 npm --prefix ../.. exec -- playwright install chromium --with-deps --only-shell && node run-browser-tests.cjs",
+    "build": "npm --prefix ../.. run build"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "version": "0.1.0",
+  "profile": "mmp-required-default-presence@0.1.0",
+  "status": "candidate_opt_in",
+  "interpretation": "Defaults are schema-level fallback metadata, not evidence that an instance supplied a required value.",
+  "cases": [
+    {
+      "id": "required_absent_default",
+      "required": true,
+      "cardinality": "0..*",
+      "present": false,
+      "default_defined": true,
+      "expected": "missing_required"
+    },
+    {
+      "id": "required_absent_no_default",
+      "required": true,
+      "cardinality": "0..*",
+      "present": false,
+      "default_defined": false,
+      "expected": "missing_required"
+    },
+    {
+      "id": "required_present",
+      "required": true,
+      "cardinality": "0..*",
+      "present": true,
+      "default_defined": true,
+      "expected": "satisfied",
+      "value": "x"
+    },
+    {
+      "id": "required_present_null",
+      "required": true,
+      "cardinality": "0..*",
+      "present": true,
+      "value": null,
+      "default_defined": true,
+      "expected": "invalid_null"
+    },
+    {
+      "id": "required_present_empty",
+      "required": true,
+      "cardinality": "0..*",
+      "present": true,
+      "value": [],
+      "default_defined": true,
+      "expected": "insufficient_values"
+    },
+    {
+      "id": "required_present_one",
+      "required": true,
+      "cardinality": "0..*",
+      "present": true,
+      "value": ["x"],
+      "default_defined": false,
+      "expected": "satisfied"
+    },
+    {
+      "id": "optional_absent_default",
+      "required": false,
+      "cardinality": "0..*",
+      "present": false,
+      "default_defined": true,
+      "expected": "optional_default_available"
+    },
+    {
+      "id": "optional_absent_no_default",
+      "required": false,
+      "cardinality": "0..*",
+      "present": false,
+      "default_defined": false,
+      "expected": "optional_absent"
+    },
+    {
+      "id": "optional_present_empty",
+      "required": false,
+      "cardinality": "0..*",
+      "present": true,
+      "value": [],
+      "default_defined": false,
+      "expected": "satisfied"
+    },
+    {
+      "id": "positive_cardinality_absent_default",
+      "required": false,
+      "cardinality": "1..2",
+      "present": false,
+      "default_defined": true,
+      "expected": "insufficient_values"
+    },
+    {
+      "id": "required_zero_max",
+      "required": true,
+      "cardinality": "0",
+      "present": false,
+      "default_defined": true,
+      "expected": "invalid_contract"
+    },
+    {
+      "id": "required_present_two_max_one",
+      "required": true,
+      "cardinality": "0..1",
+      "present": true,
+      "value": ["x", "y"],
+      "default_defined": false,
+      "expected": "too_many_values"
+    }
+  ]
+}

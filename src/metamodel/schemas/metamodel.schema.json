@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/metamodel.schema.json",
+  "title": "Canonical metamodel core v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "metamodel", "elements", "relationships"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "metamodel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "version"],
+      "properties": {
+        "id": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "name": {
+          "$ref": "common-definitions.schema.json#/$defs/nonEmpty"
+        },
+        "version": {
+          "$ref": "common-definitions.schema.json#/$defs/semver"
+        },
+        "description": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "default_language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+        },
+        "extensions": {
+          "$ref": "common-definitions.schema.json#/$defs/extensions"
+        }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/elementType"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationshipType"
+      }
+    },
+    "junctions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/junctionType"
+      }
+    }
+  },
+  "$defs": {
+    "elementType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "name": {
+          "$ref": "common-definitions.schema.json#/$defs/nonEmpty"
+        },
+        "description": {
+          "type": "string"
+        },
+        "abstract": {
+          "type": "boolean",
+          "default": false
+        },
+        "extends": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        },
+        "property_sets": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "extensions": {
+          "$ref": "common-definitions.schema.json#/$defs/extensions"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "element",
+            "node",
+            "artifact",
+            "actor",
+            "behavior",
+            "structure",
+            "motivation",
+            "custom"
+          ]
+        }
+      }
+    },
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["types"],
+      "properties": {
+        "types": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        },
+        "cardinality": {
+          "$ref": "common-definitions.schema.json#/$defs/cardinality"
+        },
+        "role": {
+          "type": "string"
+        },
+        "navigable": {
+          "type": "boolean"
+        },
+        "extensions": {
+          "$ref": "common-definitions.schema.json#/$defs/extensions"
+        },
+        "typed_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "id"],
+            "properties": {
+              "kind": {
+                "enum": ["element", "relationship", "junction"]
+              },
+              "id": {
+                "$ref": "common-definitions.schema.json#/$defs/id"
+              }
+            }
+          }
+        }
+      }
+    },
+    "relationshipType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "source", "target"],
+      "properties": {
+        "id": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "name": {
+          "$ref": "common-definitions.schema.json#/$defs/nonEmpty"
+        },
+        "description": {
+          "type": "string"
+        },
+        "abstract": {
+          "type": "boolean",
+          "default": false
+        },
+        "extends": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        },
+        "property_sets": {
+          "$ref": "common-definitions.schema.json#/$defs/refList"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "extensions": {
+          "$ref": "common-definitions.schema.json#/$defs/extensions"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "association",
+            "dependency",
+            "flow",
+            "structural",
+            "influence",
+            "realization",
+            "specialization",
+            "custom"
+          ]
+        },
+        "directed": {
+          "type": "boolean",
+          "default": true
+        },
+        "source": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "target": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "allowed_type_pairs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source", "target"],
+            "properties": {
+              "source": {
+                "$ref": "common-definitions.schema.json#/$defs/id"
+              },
+              "target": {
+                "$ref": "common-definitions.schema.json#/$defs/id"
+              }
+            }
+          }
+        },
+        "allowed_typed_pairs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source", "target"],
+            "properties": {
+              "source": {
+                "$ref": "#/$defs/typedReference"
+              },
+              "target": {
+                "$ref": "#/$defs/typedReference"
+              }
+            }
+          }
+        }
+      }
+    },
+    "junctionType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        },
+        "name": {
+          "$ref": "common-definitions.schema.json#/$defs/nonEmpty"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "typedReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["element", "relationship", "junction"]
+        },
+        "id": {
+          "$ref": "common-definitions.schema.json#/$defs/id"
+        }
+      }
+    }
+  }
+}

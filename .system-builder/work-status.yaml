@@ -1,0 +1,37 @@
+phase: change_complete
+selected_step: null
+in_progress: null
+completed_steps:
+- DEV-001
+- DEV-002
+- DEV-003
+- DEV-004
+- DEV-005
+- DEV-006
+- CHG-001
+- CHG-002
+next:
+  recommended: acceptance_review
+  reason: 74 domain/integration tests, 11 actual browser tests, preview and desktop/tablet
+    screenshots PASS
+verification:
+  step: CHG-002
+  result: passed
+  evidence: docs/verification/CHG-002.md
+  runtime_and_test_revision_sha256: 2bd5757cbf14c1ba3efc2c50c0ad0eaabc41edbbe3d8133ad9dbbe024552c344
+  gates:
+    unit_integration: passed_74_tests
+    build: passed
+    format: passed
+    runtime_content: passed_no_examples
+    browser: passed_11_tests
+    archive: passed
+    preview: passed
+    browser_screenshot: passed_desktop_and_tablet
+  source_sha256: 7cdc7accd80e839fb0070f709879105b102e14e2f464bd02e7b80e121f841c08
+  verified_at: '2026-10-29'
+execution_policy:
+  continue_through: CHG-002
+  repair_attempt_limit_per_step: 5
+  authority: user requested removing runtime examples, 2026-10-29
+blockers: []

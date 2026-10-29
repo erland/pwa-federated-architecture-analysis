@@ -1,0 +1,44 @@
+{
+  "schemas/common-definitions.schema.json": [
+    "5aa6cf2cb1111e79c7ddbade7144977b30624dded32b9dbf1b9508ce2a925523"
+  ],
+  "schemas/constraints.schema.json": [
+    "00a98a05fc2491bebec273a2641fe847fd962c19adba6034edb7db615942eb5f"
+  ],
+  "schemas/guidance.schema.json": [
+    "80108e52089dc5269613f4c4a65559ad0926b9616bdbc0bd562b83c2b084b9a4"
+  ],
+  "schemas/metamodel.schema.json": [
+    "40f4e034f4b5b7994bfe4f0af3aa8d8edb46c091e71ff43feb223cb615621088"
+  ],
+  "schemas/notation.schema.json": [
+    "499e35a61abc55130cad8b1549383aac0afa64aaa31508faef6015230402cb0d"
+  ],
+  "schemas/properties.schema.json": [
+    "6047269374d49fdc0c34c4ff01af90ab4643516af7990079d17ec817c4bfb702"
+  ],
+  "schemas/provenance.schema.json": [
+    "bd8028fb5c72d141d597ddc3e44ed3ca27c52c32bb9f284fe7f6197e36f42fb2"
+  ],
+  "schemas/version.schema.json": [
+    "442d5acd962088eb5d9e4753018a36bcaedc5015ad775393722f0a4145415711"
+  ],
+  "schemas/viewpoints.schema.json": [
+    "91f54f7853d76cf13aa88b54080df9103f06ccccdb9ef0ef3d3dc2720a14c41f"
+  ],
+  "schemas/mmp-manifest-v1.schema.json": [
+    "229be0c5c9e2dda54a59be0e4975b47ae7ecdd1c92dc4ffaddaeffea2a694011"
+  ],
+  "schemas/mmp-manifest-1-1-candidate.schema.json": [
+    "7f34a4ee1c5a74ff9f4029a98989d0b09119b23677f3bb9610282d0b3a6b8c00"
+  ],
+  "schemas/mmp-required-default-presence-profile.schema.json": [
+    "215a1fde9e53126b5cf2059d3dcf7ab0785d90276860a6ac687047fe45967f07"
+  ],
+  "schemas/mmp-junction-structure-profile.schema.json": [
+    "a84221ebcb45dd41d19966f6d502ecbdf4221fcd5777bb10cc1aa1922c277c45"
+  ],
+  "schemas/mmp-conformance-declaration-v1.schema.json": [
+    "30457799a812059143c0a9cea7d79916519907900cd9381073303e74890bc56f"
+  ]
+}

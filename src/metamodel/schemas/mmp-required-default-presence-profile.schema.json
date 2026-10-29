@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Required default presence profile 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile",
+    "default_satisfies_required",
+    "null_counts_as_present"
+  ],
+  "properties": {
+    "profile": {
+      "const": "mmp-required-default-presence@0.1.0"
+    },
+    "default_satisfies_required": {
+      "const": false
+    },
+    "null_counts_as_present": {
+      "const": false
+    }
+  },
+  "$id": "https://metamodel-builder.local/schemas/mmp-required-default-presence-profile.schema.json"
+}

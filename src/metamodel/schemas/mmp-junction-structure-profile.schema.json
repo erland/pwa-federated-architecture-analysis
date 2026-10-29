@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MMP junction structural candidate profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile", "junction_operators"],
+  "properties": {
+    "profile": {
+      "const": "mmp-junction-structure@0.1.0"
+    },
+    "junction_operators": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+      },
+      "additionalProperties": {
+        "enum": ["and", "or"]
+      }
+    }
+  },
+  "$id": "https://mmp.example.org/schemas/mmp-junction-structure-profile.schema.json"
+}

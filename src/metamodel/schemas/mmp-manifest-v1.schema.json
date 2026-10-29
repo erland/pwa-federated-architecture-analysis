@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metamodel-builder.local/schemas/mmp-manifest-v1.schema.json",
+  "title": "Metamodel Exchange Package v1 manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "package_format",
+    "package_format_version",
+    "metamodel",
+    "producer",
+    "generated_at",
+    "entrypoints",
+    "files"
+  ],
+  "properties": {
+    "package_format": {
+      "const": "mmp"
+    },
+    "package_format_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "metamodel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "version", "namespace"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[a-zA-Z0-9.-]+)?$"
+        },
+        "namespace": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        }
+      }
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "entrypoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metamodel",
+        "properties",
+        "constraints",
+        "viewpoints",
+        "notation",
+        "provenance",
+        "version"
+      ],
+      "properties": {
+        "metamodel": {
+          "$ref": "#/$defs/path"
+        },
+        "properties": {
+          "$ref": "#/$defs/path"
+        },
+        "constraints": {
+          "$ref": "#/$defs/path"
+        },
+        "viewpoints": {
+          "$ref": "#/$defs/path"
+        },
+        "notation": {
+          "$ref": "#/$defs/path"
+        },
+        "provenance": {
+          "$ref": "#/$defs/path"
+        },
+        "version": {
+          "$ref": "#/$defs/path"
+        },
+        "guidance": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 15,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "role", "media_type", "sha256"],
+        "properties": {
+          "path": {
+            "$ref": "#/$defs/path"
+          },
+          "role": {
+            "enum": ["canonical", "schema", "documentation"]
+          },
+          "media_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "structural": {
+          "enum": ["passed", "failed", "not_run"]
+        },
+        "semantic": {
+          "enum": ["passed", "failed", "not_run"]
+        },
+        "validator": {
+          "type": "string"
+        },
+        "validator_version": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\\\\\)[A-Za-z0-9._/-]+$"
+    }
+  }
+}
